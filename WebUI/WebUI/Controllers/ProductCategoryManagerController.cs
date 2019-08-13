@@ -11,11 +11,11 @@ namespace WebUI.Controllers
 {
     public class ProductCategoryManagerController : Controller
     {
-        ProductCategoryRespository context;
+        InMemoryRespository<ProductCategory> context;
 
         public ProductCategoryManagerController()
         {
-            context = new ProductCategoryRespository();
+            context = new InMemoryRespository<ProductCategory>();
         }
 
 
@@ -117,7 +117,7 @@ namespace WebUI.Controllers
             }
             else
             {
-                context.Delete(pc);
+                context.Delete(pc.Id);
                 context.Commit();
                 return RedirectToAction("Index");
 
