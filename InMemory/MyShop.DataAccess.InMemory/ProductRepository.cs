@@ -7,6 +7,7 @@ using System.Runtime.Caching;
 using MyShop.Core;
 using MyShop.Core.Models;
 
+
 namespace MyShop.DataAccess.InMemory
 {
     public class ProductRepository
@@ -26,7 +27,7 @@ namespace MyShop.DataAccess.InMemory
 
         }
 
-        public void Commit()
+        public void Committ()
         {
             cache["products"] = products;
         }

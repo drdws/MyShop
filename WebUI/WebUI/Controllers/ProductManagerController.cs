@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 using MyShop.DataAccess.InMemory;
 using WebUI.Controllers;
 
@@ -12,10 +13,12 @@ namespace WebUI.Controllers
     public class ProductManagerController : Controller
     {
         ProductRepository context;
+        ProductCategoryRespository productCategories;
 
         public ProductManagerController()
         {
-            context = new ProductRepository();         
+            context = new ProductRepository();
+            productCategories = new ProductCategoryRespository();
         }
 
 
@@ -29,8 +32,12 @@ namespace WebUI.Controllers
 
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewmodel  = new ProductManagerViewModel();
+
+
+            viewmodel.product = new Product();
+            viewmodel.productCategories = productCategories.Collection();
+            return View(viewmodel);
         }
 
         [HttpPost]
@@ -43,7 +50,7 @@ namespace WebUI.Controllers
             else
             {
                 context.Insert(product);
-                context.Commit();
+                context.Committ();
 
                 return RedirectToAction("Index");
             }
@@ -60,7 +67,11 @@ namespace WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewmodel = new ProductManagerViewModel();
+                viewmodel.product = product;
+                viewmodel.productCategories = productCategories.Collection();
+                return View(viewmodel);
+                
             }
 
         }
@@ -88,7 +99,7 @@ namespace WebUI.Controllers
             p.Name = product.Name;
             p.Price = product.Price;
 
-            context.Commit();
+            context.Committ();
 
             return RedirectToAction("Index");
 
@@ -121,7 +132,7 @@ namespace WebUI.Controllers
             else
             {
                 context.Delete(p);
-                context.Commit();
+                context.Committ();
                 return RedirectToAction("Index");
                                 
             }
