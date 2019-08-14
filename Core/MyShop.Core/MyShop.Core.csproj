@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IRespository.cs" />
     <Compile Include="Models\baseEntity.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
