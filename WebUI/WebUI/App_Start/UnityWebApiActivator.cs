@@ -33,9 +33,11 @@ namespace WebUI
             // Use UnityHierarchicalDependencyResolver if you want to use
             // a new child container for each IHttpController resolution.
             // var resolver = new UnityHierarchicalDependencyResolver(UnityConfig.Container);
-          //  var resolver = new UnityDependencyResolver(UnityConfig.container);
+            
+            //var resolver = new UnityDependencyResolver(UnityConfig.container);
+            var resolver = new Unity.WebApi.UnityDependencyResolver(UnityConfig.container);
 
-          //  GlobalConfiguration.Configuration.DependencyResolver = resolver;
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
 
         /// <summary>
